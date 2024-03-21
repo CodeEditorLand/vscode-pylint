@@ -1,35 +1,14 @@
 {
-	"name": "pylint",
-	"displayName": "Pylint",
-	"version": "0.0.1",
-	"private": false,
-	"description": "%extension.description%",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
-	},
-	"type": "module",
-	"main": "./dist/extension.js",
-	"scripts": {
-		"compile": "webpack",
-		"compile-tests": "tsc -p . --outDir out",
-		"package": "webpack --mode production --devtool source-map --config ./webpack.config.js",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"tests": "node ./out/test/ts_tests/runTest.js",
-		"vsce-package": "vsce package -o pylint.vsix",
-		"vscode:prepublish": "npm run package",
-		"watch": "webpack --watch",
-		"watch-tests": "tsc -p . -w --outDir out"
+	"activationEvents": [
+		"onLanguage:python",
+		"workspaceContains:.pylintrc",
+		"workspaceContains:*.py"
+	],
+	"capabilities": {
+		"virtualWorkspaces": {
+			"description": "Virtual Workspaces are not supported with pylint.",
+			"supported": false
+		}
 	},
 	"contributes": {
 		"commands": [
@@ -184,16 +163,12 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onLanguage:python",
-		"workspaceContains:.pylintrc",
-		"workspaceContains:*.py"
-	],
 	"dependencies": {
 		"@vscode/python-extension": "^1.0.5",
 		"fs-extra": "^11.2.0",
 		"vscode-languageclient": "^8.1.0"
 	},
+	"description": "%extension.description%",
 	"devDependencies": {
 		"@types/chai": "^4.3.12",
 		"@types/fs-extra": "^11.0.4",
@@ -215,27 +190,33 @@
 		"webpack": "^5.90.3",
 		"webpack-cli": "^5.1.4"
 	},
+	"displayName": "Pylint",
 	"extensionDependencies": [
 		"ms-python.python"
 	],
-	"publishConfig": {
-		"access": "public"
-	},
-	"icon": "icon.png",
 	"galleryBanner": {
 		"color": "#1e415e",
 		"theme": "dark"
 	},
-	"preview": true,
-	"capabilities": {
-		"virtualWorkspaces": {
-			"description": "Virtual Workspaces are not supported with pylint.",
-			"supported": false
-		}
-	},
+	"icon": "icon.png",
 	"l10n": "./l10n",
+	"main": "./dist/extension.js",
+	"name": "pylint",
+	"preview": true,
+	"scripts": {
+		"compile": "webpack",
+		"compile-tests": "tsc -p . --outDir out",
+		"package": "webpack --mode production --devtool source-map --config ./webpack.config.js",
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"tests": "node ./out/test/ts_tests/runTest.js",
+		"vsce-package": "vsce package -o pylint.vsix",
+		"vscode:prepublish": "npm run package",
+		"watch": "webpack --watch",
+		"watch-tests": "tsc -p . -w --outDir out"
+	},
 	"serverInfo": {
 		"module": "pylint",
 		"name": "Pylint"
-	}
+	},
+	"type": "module"
 }
