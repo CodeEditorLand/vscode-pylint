@@ -1,36 +1,22 @@
 {
-	"name": "pylint",
-	"displayName": "Pylint",
-	"version": "0.0.1",
-	"private": false,
-	"description": "%extension.description%",
-	"keywords": [
-		"land"
+	"activationEvents": [
+		"onLanguage:python",
+		"workspaceContains:.pylintrc",
+		"workspaceContains:*.py"
 	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandPylint#readme",
+	"author": {
+		"email": "Land@PlayForm.Cloud",
+		"name": "🌆 — Land —",
+		"url": "HTTPS://Land.PlayForm.Cloud"
+	},
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandPylint/issues"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandPylint.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "🌆 — Land —",
-		"email": "Land@PlayForm.Cloud",
-		"url": "HTTPS://Land.PlayForm.Cloud"
-	},
-	"type": "module",
-	"main": "./dist/extension.js",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"compile": "webpack",
-		"compile-tests": "tsc -p . --outDir out",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"tests": "node ./out/test/ts_tests/runTest.js",
-		"vsce-package": "vsce package -o pylint.vsix",
-		"watch-tests": "tsc -p . -w --outDir out"
+	"capabilities": {
+		"virtualWorkspaces": {
+			"description": "Virtual Workspaces are not supported with pylint.",
+			"supported": false
+		}
 	},
 	"contributes": {
 		"commands": [
@@ -185,14 +171,10 @@
 			}
 		]
 	},
-	"activationEvents": [
-		"onLanguage:python",
-		"workspaceContains:.pylintrc",
-		"workspaceContains:*.py"
-	],
 	"dependencies": {
 		"fs-extra": "11.2.0"
 	},
+	"description": "%extension.description%",
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
@@ -207,27 +189,45 @@
 		"ts-loader": "9.5.1",
 		"typemoq": "2.1.0"
 	},
+	"displayName": "Pylint",
 	"extensionDependencies": [
 		"ms-python.python"
 	],
-	"publishConfig": {
-		"access": "public"
-	},
-	"icon": "icon.png",
 	"galleryBanner": {
 		"color": "#1e415e",
 		"theme": "dark"
 	},
-	"preview": true,
-	"capabilities": {
-		"virtualWorkspaces": {
-			"description": "Virtual Workspaces are not supported with pylint.",
-			"supported": false
-		}
-	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandPylint#readme",
+	"icon": "icon.png",
+	"keywords": [
+		"land"
+	],
 	"l10n": "./l10n",
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "./dist/extension.js",
+	"name": "pylint",
+	"preview": true,
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandPylint.git"
+	},
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"compile": "webpack",
+		"compile-tests": "tsc -p . --outDir out",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
+		"tests": "node ./out/test/ts_tests/runTest.js",
+		"vsce-package": "vsce package -o pylint.vsix",
+		"watch-tests": "tsc -p . -w --outDir out"
+	},
 	"serverInfo": {
 		"module": "pylint",
 		"name": "Pylint"
-	}
+	},
+	"type": "module",
+	"version": "0.0.1"
 }
