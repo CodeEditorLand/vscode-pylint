@@ -4,31 +4,32 @@
 	"version": "0.0.1",
 	"private": false,
 	"description": "%extension.description%",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandPylint#readme",
 	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandPylint/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandPylint.git"
 	},
 	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
 	},
 	"type": "module",
 	"main": "./dist/extension.js",
 	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
 		"compile": "webpack",
 		"compile-tests": "tsc -p . --outDir out",
-		"package": "webpack --mode production --devtool source-map --config ./webpack.config.js",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"tests": "node ./out/test/ts_tests/runTest.js",
 		"vsce-package": "vsce package -o pylint.vsix",
-		"vscode:prepublish": "npm run package",
-		"watch": "webpack --watch",
 		"watch-tests": "tsc -p . -w --outDir out"
 	},
 	"contributes": {
@@ -190,30 +191,21 @@
 		"workspaceContains:*.py"
 	],
 	"dependencies": {
-		"@vscode/python-extension": "^1.0.5",
-		"fs-extra": "^11.2.0",
-		"vscode-languageclient": "^8.1.0"
+		"fs-extra": "11.2.0"
 	},
 	"devDependencies": {
-		"@types/chai": "^4.3.12",
-		"@types/fs-extra": "^11.0.4",
-		"@types/glob": "^8.1.0",
-		"@types/mocha": "^10.0.6",
-		"@types/node": "16.x",
-		"@types/sinon": "^17.0.3",
-		"@types/vscode": "^1.74.0",
-		"@vscode/test-electron": "^2.3.9",
-		"@vscode/vsce": "^2.24.0",
-		"chai": "^4.3.10",
-		"glob": "^10.3.10",
-		"mocha": "^10.3.0",
-		"sinon": "^17.0.1",
-		"ts-loader": "^9.5.1",
-		"typemoq": "^2.1.0",
-		"typescript": "^5.4.2",
-		"typescript-esbuild": "0.4.5",
-		"webpack": "^5.90.3",
-		"webpack-cli": "^5.1.4"
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6",
+		"@types/chai": "4.3.14",
+		"@types/fs-extra": "11.0.4",
+		"@types/glob": "8.1.0",
+		"@types/node": "20.x",
+		"@types/sinon": "17.0.3",
+		"chai": "5.1.0",
+		"glob": "10.3.12",
+		"sinon": "17.0.1",
+		"ts-loader": "9.5.1",
+		"typemoq": "2.1.0"
 	},
 	"extensionDependencies": [
 		"ms-python.python"
