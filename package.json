@@ -178,7 +178,7 @@
 		"@types/node": "20.x",
 		"@types/sinon": "17.0.3",
 		"chai": "5.1.1",
-		"glob": "10.3.15",
+		"glob": "10.3.16",
 		"sinon": "18.0.0",
 		"ts-loader": "9.5.1",
 		"typemoq": "2.1.0"
