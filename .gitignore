@@ -1,0 +1,13 @@
+out
+dist
+node_modules
+.vscode-test/
+*.vsix
+.venv/
+.nox/
+bundled/libs/
+**/.mypy_cache
+**/__pycache__
+**/.pytest_cache
+**/.vs
+src/test/python_tests/test_data/sample1/*.py
