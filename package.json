@@ -172,7 +172,7 @@
 		"fs-extra": "11.2.0"
 	},
 	"devDependencies": {
-		"@types/chai": "4.3.19",
+		"@types/chai": "5.0.0",
 		"@types/fs-extra": "11.0.4",
 		"@types/glob": "8.1.0",
 		"@types/node": "22.x",
