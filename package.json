@@ -1,249 +1,206 @@
 {
-    "name": "pylint",
-    "displayName": "Pylint",
-    "description": "%extension.description%",
-    "version": "2024.1.0-dev",
-    "preview": true,
-    "serverInfo": {
-        "name": "Pylint",
-        "module": "pylint"
-    },
-    "publisher": "ms-python",
-    "license": "MIT",
-    "homepage": "https://github.com/Microsoft/vscode-pylint",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/microsoft/vscode-pylint.git"
-    },
-    "bugs": {
-        "url": "https://github.com/Microsoft/vscode-pylint/issues"
-    },
-    "icon": "icon.png",
-    "galleryBanner": {
-        "color": "#1e415e",
-        "theme": "dark"
-    },
-    "keywords": [
-        "python",
-        "linting",
-        "pylint"
-    ],
-    "engines": {
-        "vscode": "^1.74.0"
-    },
-    "categories": [
-        "Programming Languages",
-        "Linters"
-    ],
-    "extensionDependencies": [
-        "ms-python.python"
-    ],
-    "capabilities": {
-        "virtualWorkspaces": {
-            "supported": false,
-            "description": "Virtual Workspaces are not supported with pylint."
-        }
-    },
-    "activationEvents": [
-        "onLanguage:python",
-        "workspaceContains:.pylintrc",
-        "workspaceContains:*.py"
-    ],
-    "main": "./dist/extension.js",
-    "l10n": "./l10n",
-    "scripts": {
-        "vscode:prepublish": "npm run package",
-        "compile": "webpack",
-        "watch": "webpack --watch",
-        "package": "webpack --mode production --devtool source-map --config ./webpack.config.js",
-        "compile-tests": "tsc -p . --outDir out",
-        "watch-tests": "tsc -p . -w --outDir out",
-        "pretest": "npm run compile-tests && npm run compile",
-        "lint": "eslint src --ext ts",
-        "format-check": "prettier --check 'src/**/*.ts' 'build/**/*.yml' '.github/**/*.yml'",
-        "tests": "node ./out/test/ts_tests/runTest.js",
-        "vsce-package": "vsce package -o pylint.vsix"
-    },
-    "contributes": {
-        "languages": [
-            {
-                "filenames": [
-                    ".pylintrc"
-                ],
-                "id": "ini"
-            }
-        ],
-        "configuration": {
-            "properties": {
-                "pylint.args": {
-                    "default": [],
-                    "markdownDescription": "%settings.args.description%",
-                    "items": {
-                        "type": "string"
-                    },
-                    "scope": "resource",
-                    "type": "array"
-                },
-                "pylint.cwd": {
-                    "default": "${workspaceFolder}",
-                    "markdownDescription": "%settings.cwd.description%",
-                    "scope": "resource",
-                    "type": "string",
-                    "examples": [
-                        "${workspaceFolder}/src",
-                        "${fileDirname}"
-                    ]
-                },
-                "pylint.enabled": {
-                    "default": true,
-                    "markdownDescription": "%settings.enabled.description%",
-                    "scope": "resource",
-                    "type": "boolean"
-                },
-                "pylint.ignorePatterns": {
-                    "default": [],
-                    "markdownDescription": "%settings.ignorePatterns.description%",
-                    "items": {
-                        "type": "string"
-                    },
-                    "scope": "resource",
-                    "type": "array",
-                    "uniqueItems": true,
-                    "examples": [
-                        [
-                            "**/site-packages/**/*.py",
-                            ".vscode/*.py"
-                        ]
-                    ]
-                },
-                "pylint.importStrategy": {
-                    "default": "useBundled",
-                    "markdownDescription": "%settings.importStrategy.description%",
-                    "enum": [
-                        "useBundled",
-                        "fromEnvironment"
-                    ],
-                    "enumDescriptions": [
-                        "%settings.importStrategy.useBundled.description%",
-                        "%settings.importStrategy.fromEnvironment.description%"
-                    ],
-                    "scope": "resource",
-                    "type": "string"
-                },
-                "pylint.interpreter": {
-                    "default": [],
-                    "markdownDescription": "%settings.interpreter.description%",
-                    "scope": "resource",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
-                },
-                "pylint.lintOnChange": {
-                    "default": false,
-                    "markdownDescription": "%settings.lintOnChange.description%",
-                    "scope": "machine",
-                    "type": "boolean",
-                    "tags": [
-                        "experimental"
-                    ]
-                },
-                "pylint.path": {
-                    "default": [],
-                    "markdownDescription": "%settings.path.description%",
-                    "scope": "resource",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array",
-                    "examples": [
-                        [
-                            "~/global_env/pylint"
-                        ],
-                        [
-                            "~/.env/python",
-                            "-m",
-                            "pylint"
-                        ]
-                    ]
-                },
-                "pylint.severity": {
-                    "default": {
-                        "convention": "Information",
-                        "error": "Error",
-                        "fatal": "Error",
-                        "refactor": "Hint",
-                        "warning": "Warning",
-                        "info": "Information"
-                    },
-                    "additionalProperties": {
-                        "type": "string",
-                        "enum": [
-                            "Error",
-                            "Hint",
-                            "Information",
-                            "Warning"
-                        ]
-                    },
-                    "markdownDescription": "%settings.severity.description%",
-                    "scope": "resource",
-                    "type": "object"
-                },
-                "pylint.showNotifications": {
-                    "default": "off",
-                    "markdownDescription": "%settings.showNotifications.description%",
-                    "enum": [
-                        "off",
-                        "onError",
-                        "onWarning",
-                        "always"
-                    ],
-                    "enumDescriptions": [
-                        "%settings.showNotifications.off.description%",
-                        "%settings.showNotifications.onError.description%",
-                        "%settings.showNotifications.onWarning.description%",
-                        "%settings.showNotifications.always.description%"
-                    ],
-                    "scope": "machine",
-                    "type": "string"
-                }
-            }
-        },
-        "commands": [
-            {
-                "title": "%command.restartServer%",
-                "category": "Pylint",
-                "command": "pylint.restart"
-            }
-        ]
-    },
-    "dependencies": {
-        "@vscode/python-extension": "^1.0.5",
-        "fs-extra": "^11.2.0",
-        "vscode-languageclient": "^8.1.0"
-    },
-    "devDependencies": {
-        "@types/chai": "^4.3.16",
-        "@types/fs-extra": "^11.0.4",
-        "@types/glob": "^8.1.0",
-        "@types/mocha": "^10.0.6",
-        "@types/node": "16.x",
-        "@types/sinon": "^17.0.3",
-        "@types/vscode": "^1.74.0",
-        "@typescript-eslint/eslint-plugin": "^7.13.0",
-        "@typescript-eslint/parser": "^7.13.0",
-        "@vscode/test-electron": "^2.4.0",
-        "@vscode/vsce": "^2.27.0",
-        "chai": "^4.3.10",
-        "eslint": "^8.57.0",
-        "glob": "^10.4.1",
-        "mocha": "^10.4.0",
-        "prettier": "^3.3.2",
-        "sinon": "^18.0.0",
-        "ts-loader": "^9.5.1",
-        "typemoq": "^2.1.0",
-        "typescript": "^5.4.5",
-        "webpack": "^5.92.0",
-        "webpack-cli": "^5.1.4"
-    }
+	"activationEvents": [
+		"onLanguage:python",
+		"workspaceContains:.pylintrc",
+		"workspaceContains:*.py"
+	],
+	"capabilities": {
+		"virtualWorkspaces": {
+			"description": "Virtual Workspaces are not supported with pylint.",
+			"supported": false
+		}
+	},
+	"contributes": {
+		"commands": [
+			{
+				"category": "Pylint",
+				"command": "pylint.restart",
+				"title": "%command.restartServer%"
+			}
+		],
+		"configuration": {
+			"properties": {
+				"pylint.args": {
+					"default": [],
+					"items": {
+						"type": "string"
+					},
+					"markdownDescription": "%settings.args.description%",
+					"scope": "resource",
+					"type": "array"
+				},
+				"pylint.cwd": {
+					"default": "${workspaceFolder}",
+					"examples": [
+						"${workspaceFolder}/src",
+						"${fileDirname}"
+					],
+					"markdownDescription": "%settings.cwd.description%",
+					"scope": "resource",
+					"type": "string"
+				},
+				"pylint.enabled": {
+					"default": true,
+					"markdownDescription": "%settings.enabled.description%",
+					"scope": "resource",
+					"type": "boolean"
+				},
+				"pylint.ignorePatterns": {
+					"default": [],
+					"examples": [
+						[
+							"**/site-packages/**/*.py",
+							".vscode/*.py"
+						]
+					],
+					"items": {
+						"type": "string"
+					},
+					"markdownDescription": "%settings.ignorePatterns.description%",
+					"scope": "resource",
+					"type": "array",
+					"uniqueItems": true
+				},
+				"pylint.importStrategy": {
+					"default": "useBundled",
+					"enum": [
+						"useBundled",
+						"fromEnvironment"
+					],
+					"enumDescriptions": [
+						"%settings.importStrategy.useBundled.description%",
+						"%settings.importStrategy.fromEnvironment.description%"
+					],
+					"markdownDescription": "%settings.importStrategy.description%",
+					"scope": "resource",
+					"type": "string"
+				},
+				"pylint.interpreter": {
+					"default": [],
+					"items": {
+						"type": "string"
+					},
+					"markdownDescription": "%settings.interpreter.description%",
+					"scope": "resource",
+					"type": "array"
+				},
+				"pylint.lintOnChange": {
+					"default": false,
+					"markdownDescription": "%settings.lintOnChange.description%",
+					"scope": "machine",
+					"tags": [
+						"experimental"
+					],
+					"type": "boolean"
+				},
+				"pylint.path": {
+					"default": [],
+					"examples": [
+						[
+							"~/global_env/pylint"
+						],
+						[
+							"~/.env/python",
+							"-m",
+							"pylint"
+						]
+					],
+					"items": {
+						"type": "string"
+					},
+					"markdownDescription": "%settings.path.description%",
+					"scope": "resource",
+					"type": "array"
+				},
+				"pylint.severity": {
+					"additionalProperties": {
+						"enum": [
+							"Error",
+							"Hint",
+							"Information",
+							"Warning"
+						],
+						"type": "string"
+					},
+					"default": {
+						"convention": "Information",
+						"error": "Error",
+						"fatal": "Error",
+						"info": "Information",
+						"refactor": "Hint",
+						"warning": "Warning"
+					},
+					"markdownDescription": "%settings.severity.description%",
+					"scope": "resource",
+					"type": "object"
+				},
+				"pylint.showNotifications": {
+					"default": "off",
+					"enum": [
+						"off",
+						"onError",
+						"onWarning",
+						"always"
+					],
+					"enumDescriptions": [
+						"%settings.showNotifications.off.description%",
+						"%settings.showNotifications.onError.description%",
+						"%settings.showNotifications.onWarning.description%",
+						"%settings.showNotifications.always.description%"
+					],
+					"markdownDescription": "%settings.showNotifications.description%",
+					"scope": "machine",
+					"type": "string"
+				}
+			}
+		},
+		"languages": [
+			{
+				"filenames": [
+					".pylintrc"
+				],
+				"id": "ini"
+			}
+		]
+	},
+	"dependencies": {
+		"fs-extra": "^11.2.0"
+	},
+	"description": "%extension.description%",
+	"devDependencies": {
+		"@types/chai": "^4.3.16",
+		"@types/fs-extra": "^11.0.4",
+		"@types/glob": "^8.1.0",
+		"@types/node": "16.x",
+		"@types/sinon": "^17.0.3",
+		"chai": "^4.3.10",
+		"glob": "^10.4.1",
+		"sinon": "^18.0.0",
+		"ts-loader": "^9.5.1",
+		"typemoq": "^2.1.0"
+	},
+	"displayName": "Pylint",
+	"extensionDependencies": [
+		"ms-python.python"
+	],
+	"galleryBanner": {
+		"color": "#1e415e",
+		"theme": "dark"
+	},
+	"icon": "icon.png",
+	"l10n": "./l10n",
+	"main": "./dist/extension.js",
+	"name": "pylint",
+	"preview": true,
+	"scripts": {
+		"compile": "webpack",
+		"compile-tests": "tsc -p . --outDir out",
+		"tests": "node ./out/test/ts_tests/runTest.js",
+		"vsce-package": "vsce package -o pylint.vsix",
+		"watch-tests": "tsc -p . -w --outDir out"
+	},
+	"serverInfo": {
+		"module": "pylint",
+		"name": "Pylint"
+	}
 }
