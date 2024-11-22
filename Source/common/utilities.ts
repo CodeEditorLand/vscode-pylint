@@ -39,11 +39,13 @@ export function getLSClientTraceLevel(
 	const level = logLevelToTrace(
 		channelLogLevel <= globalLogLevel ? channelLogLevel : globalLogLevel,
 	);
+
 	return level;
 }
 
 export async function getProjectRoot(): Promise<WorkspaceFolder> {
 	const workspaces: readonly WorkspaceFolder[] = getWorkspaceFolders();
+
 	if (workspaces.length === 0) {
 		return {
 			uri: Uri.file(process.cwd()),
@@ -54,11 +56,14 @@ export async function getProjectRoot(): Promise<WorkspaceFolder> {
 		return workspaces[0];
 	} else {
 		let rootWorkspace = workspaces[0];
+
 		let root = undefined;
+
 		for (const w of workspaces) {
 			if (await fs.pathExists(w.uri.fsPath)) {
 				root = w.uri.fsPath;
 				rootWorkspace = w;
+
 				break;
 			}
 		}

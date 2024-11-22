@@ -32,6 +32,7 @@ class OutputChannelLogger {
 let channel: OutputChannelLogger | undefined;
 export function registerLogger(logChannel: LogOutputChannel): Disposable {
 	channel = new OutputChannelLogger(logChannel);
+
 	return {
 		dispose: () => {
 			channel = undefined;

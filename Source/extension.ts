@@ -38,7 +38,9 @@ export async function activate(
 	// This is required to get server name and module. This should be
 	// the first thing that we do in this extension.
 	const serverInfo = loadServerDefaults();
+
 	const serverName = serverInfo.name;
+
 	const serverId = serverInfo.module;
 
 	// Setup logging
@@ -65,11 +67,13 @@ export async function activate(
 
 	const runServer = async () => {
 		const projectRoot = await getProjectRoot();
+
 		const workspaceSetting = await getWorkspaceSettings(
 			serverId,
 			projectRoot,
 			true,
 		);
+
 		if (workspaceSetting.interpreter.length === 0) {
 			updateStatus(
 				vscode.l10n.t("Please select a Python interpreter."),
@@ -121,6 +125,7 @@ export async function activate(
 
 	setImmediate(async () => {
 		const interpreter = getInterpreterFromSetting(serverId);
+
 		if (interpreter === undefined || interpreter.length === 0) {
 			traceLog(`Python extension loading`);
 			await initializePython(context.subscriptions);
