@@ -21,6 +21,7 @@ const DEFAULT_SEVERITY: Record<string, string> = {
 	warning: "Warning",
 	info: "Information",
 };
+
 export interface ISettings {
 	cwd: string;
 	enabled: boolean;

@@ -13,6 +13,7 @@ import { getDocumentSelector } from "./utilities";
 import { createLanguageStatusItem } from "./vscodeapi";
 
 let _status: LanguageStatusItem | undefined;
+
 export function registerLanguageStatusItem(
 	id: string,
 	name: string,

@@ -102,6 +102,7 @@ async function createServer(
 }
 
 let _disposables: Disposable[] = [];
+
 export async function restartServer(
 	workspaceSetting: ISettings,
 	serverId: string,
