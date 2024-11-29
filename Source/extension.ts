@@ -46,10 +46,12 @@ export async function activate(
 
 	// Setup logging
 	const outputChannel = createOutputChannel(serverName);
+
 	context.subscriptions.push(outputChannel, registerLogger(outputChannel));
 
 	const changeLogLevel = async (c: vscode.LogLevel, g: vscode.LogLevel) => {
 		const level = getLSClientTraceLevel(c, g);
+
 		await lsClient?.setTrace(level);
 	};
 
@@ -63,7 +65,9 @@ export async function activate(
 	);
 
 	traceLog(`Name: ${serverName}`);
+
 	traceLog(`Module: ${serverInfo.module}`);
+
 	traceVerbose(`Configuration: ${JSON.stringify(serverInfo)}`);
 
 	const runServer = async () => {
@@ -80,6 +84,7 @@ export async function activate(
 				vscode.l10n.t("Please select a Python interpreter."),
 				vscode.LanguageStatusSeverity.Error,
 			);
+
 			traceError(
 				"Python interpreter missing:\r\n" +
 					"[Option 1] Select python interpreter using the ms-python.python.\r\n" +
@@ -129,7 +134,9 @@ export async function activate(
 
 		if (interpreter === undefined || interpreter.length === 0) {
 			traceLog(`Python extension loading`);
+
 			await initializePython(context.subscriptions);
+
 			traceLog(`Python extension loaded`);
 		} else {
 			await runServer();

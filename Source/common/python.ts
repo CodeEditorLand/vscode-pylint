@@ -10,6 +10,7 @@ import { traceError, traceLog } from "./logging";
 
 export interface IInterpreterDetails {
 	path?: string[];
+
 	resource?: Uri;
 }
 
@@ -24,6 +25,7 @@ async function getPythonExtensionAPI(): Promise<PythonExtension | undefined> {
 	if (_api) {
 		return _api;
 	}
+
 	_api = await PythonExtension.api();
 
 	return _api;
@@ -46,6 +48,7 @@ export async function initializePython(
 			);
 
 			traceLog("Waiting for interpreter from Python extension.");
+
 			onDidChangePythonInterpreterEvent.fire(
 				await getInterpreterDetails(),
 			);
@@ -75,6 +78,7 @@ export async function getInterpreterDetails(
 	if (environment?.executable.uri && checkVersion(environment)) {
 		return { path: [environment?.executable.uri.fsPath], resource };
 	}
+
 	return { path: undefined, resource };
 }
 
@@ -101,10 +105,13 @@ export function checkVersion(
 	if (version?.major === PYTHON_MAJOR && version?.minor >= PYTHON_MINOR) {
 		return true;
 	}
+
 	traceError(
 		`Python version ${version?.major}.${version?.minor} is not supported.`,
 	);
+
 	traceError(`Selected python path: ${resolved?.executable.uri?.fsPath}`);
+
 	traceError(`Supported versions are ${PYTHON_VERSION} and above.`);
 
 	return false;

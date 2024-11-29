@@ -8,6 +8,7 @@ import { EXTENSION_ROOT_DIR } from "./constants";
 
 export interface IServerInfo {
 	name: string;
+
 	module: string;
 }
 

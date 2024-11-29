@@ -20,13 +20,17 @@ export function registerLanguageStatusItem(
 	command: string,
 ): Disposable {
 	_status = createLanguageStatusItem(id, getDocumentSelector());
+
 	_status.name = name;
+
 	_status.text = name;
+
 	_status.command = Command.create(l10n.t("Open logs"), command);
 
 	return {
 		dispose: () => {
 			_status?.dispose();
+
 			_status = undefined;
 		},
 	};
@@ -43,8 +47,11 @@ export function updateStatus(
 			status && status.length > 0
 				? `${_status.name}: ${status}`
 				: `${_status.name}`;
+
 		_status.severity = severity;
+
 		_status.busy = busy ?? false;
+
 		_status.detail = detail;
 	}
 }

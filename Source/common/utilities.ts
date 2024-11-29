@@ -33,9 +33,11 @@ export function getLSClientTraceLevel(
 	if (channelLogLevel === LogLevel.Off) {
 		return logLevelToTrace(globalLogLevel);
 	}
+
 	if (globalLogLevel === LogLevel.Off) {
 		return logLevelToTrace(channelLogLevel);
 	}
+
 	const level = logLevelToTrace(
 		channelLogLevel <= globalLogLevel ? channelLogLevel : globalLogLevel,
 	);
@@ -62,6 +64,7 @@ export async function getProjectRoot(): Promise<WorkspaceFolder> {
 		for (const w of workspaces) {
 			if (await fs.pathExists(w.uri.fsPath)) {
 				root = w.uri.fsPath;
+
 				rootWorkspace = w;
 
 				break;
@@ -75,9 +78,11 @@ export async function getProjectRoot(): Promise<WorkspaceFolder> {
 				(await fs.pathExists(w.uri.fsPath))
 			) {
 				root = w.uri.fsPath;
+
 				rootWorkspace = w;
 			}
 		}
+
 		return rootWorkspace;
 	}
 }

@@ -24,16 +24,25 @@ const DEFAULT_SEVERITY: Record<string, string> = {
 
 export interface ISettings {
 	cwd: string;
+
 	enabled: boolean;
+
 	workspace: string;
+
 	args: string[];
+
 	severity: Record<string, string>;
+
 	path: string[];
+
 	ignorePatterns: string[];
+
 	interpreter: string[];
 
 	importStrategy: string;
+
 	showNotifications: string;
+
 	extraPaths: string[];
 }
 
@@ -60,9 +69,12 @@ function resolveVariables(
 
 	if (home) {
 		substitutions.set("${userHome}", home);
+
 		substitutions.set(`~/`, `${home}/`);
+
 		substitutions.set(`~\\`, `${home}\\`); // Adding both path seps '/' and '\\' explicitly handle and preserve the path separators.
 	}
+
 	if (workspace) {
 		substitutions.set("${workspaceFolder}", workspace.uri.fsPath);
 	}
@@ -97,6 +109,7 @@ function resolveVariables(
 		for (const [key, value] of substitutions) {
 			s = s.replace(key, value);
 		}
+
 		return s;
 	});
 }
@@ -124,6 +137,7 @@ function getExtraPaths(
 	if (legacyExtraPaths.length > 0) {
 		traceLog("Using cwd from `python.analysis.extraPaths`.");
 	}
+
 	return legacyExtraPaths;
 }
 
@@ -152,9 +166,11 @@ export async function getWorkspaceSettings(
 			traceLog(
 				`No interpreter found from setting ${namespace}.interpreter`,
 			);
+
 			traceLog(
 				`Getting interpreter from ms-python.python extension for workspace ${workspace.uri.fsPath}`,
 			);
+
 			interpreter =
 				(await getInterpreterDetails(workspace.uri)).path ?? [];
 
@@ -304,12 +320,15 @@ export function logLegacySettings(): void {
 				traceWarn(
 					`"python.linting.pylintEnabled" is deprecated. You can remove that setting.`,
 				);
+
 				traceWarn(
 					"The pylint extension is always enabled. However, you can disable it per workspace using the extensions view.",
 				);
+
 				traceWarn(
 					"You can exclude files and folders using the `python.linting.ignorePatterns` setting.",
 				);
+
 				traceWarn(
 					`"python.linting.pylintEnabled" value for workspace ${workspace.uri.fsPath}: ${legacyPylintEnabled}`,
 				);
@@ -321,6 +340,7 @@ export function logLegacySettings(): void {
 				traceWarn(
 					`"python.linting.cwd" is deprecated. Use "pylint.cwd" instead.`,
 				);
+
 				traceWarn(
 					`"python.linting.cwd" value for workspace ${workspace.uri.fsPath}: ${legacyCwd}`,
 				);
@@ -335,9 +355,11 @@ export function logLegacySettings(): void {
 				traceWarn(
 					`"python.linting.pylintArgs" is deprecated. Use "pylint.args" instead.`,
 				);
+
 				traceWarn(
 					`"python.linting.pylintArgs" value for workspace ${workspace.uri.fsPath}:`,
 				);
+
 				traceWarn(`\n${JSON.stringify(legacyArgs, null, 4)}`);
 			}
 
@@ -350,9 +372,11 @@ export function logLegacySettings(): void {
 				traceWarn(
 					`"python.linting.pylintPath" is deprecated. Use "pylint.path" instead.`,
 				);
+
 				traceWarn(
 					`"python.linting.pylintPath" value for workspace ${workspace.uri.fsPath}:`,
 				);
+
 				traceWarn(`\n${JSON.stringify(legacyPath, null, 4)}`);
 			}
 		} catch (err) {
