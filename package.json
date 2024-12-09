@@ -1,14 +1,14 @@
 {
-	"activationEvents": [
-		"onLanguage:python",
-		"workspaceContains:.pylintrc",
-		"workspaceContains:*.py"
-	],
-	"capabilities": {
-		"virtualWorkspaces": {
-			"description": "Virtual Workspaces are not supported with pylint.",
-			"supported": false
-		}
+	"name": "pylint",
+	"displayName": "Pylint",
+	"description": "%extension.description%",
+	"main": "./dist/extension.js",
+	"scripts": {
+		"compile": "webpack",
+		"compile-tests": "tsc -p . --outDir out",
+		"tests": "node ./out/test/ts_tests/runTest.js",
+		"vsce-package": "vsce package -o pylint.vsix",
+		"watch-tests": "tsc -p . -w --outDir out"
 	},
 	"contributes": {
 		"commands": [
@@ -163,10 +163,14 @@
 			}
 		]
 	},
+	"activationEvents": [
+		"onLanguage:python",
+		"workspaceContains:.pylintrc",
+		"workspaceContains:*.py"
+	],
 	"dependencies": {
 		"fs-extra": "11.2.0"
 	},
-	"description": "%extension.description%",
 	"devDependencies": {
 		"@types/chai": "5.0.1",
 		"@types/fs-extra": "11.0.4",
@@ -179,26 +183,22 @@
 		"ts-loader": "9.5.1",
 		"typemoq": "2.1.0"
 	},
-	"displayName": "Pylint",
 	"extensionDependencies": [
 		"ms-python.python"
 	],
+	"icon": "icon.png",
 	"galleryBanner": {
 		"color": "#1e415e",
 		"theme": "dark"
 	},
-	"icon": "icon.png",
-	"l10n": "./l10n",
-	"main": "./dist/extension.js",
-	"name": "pylint",
 	"preview": true,
-	"scripts": {
-		"compile": "webpack",
-		"compile-tests": "tsc -p . --outDir out",
-		"tests": "node ./out/test/ts_tests/runTest.js",
-		"vsce-package": "vsce package -o pylint.vsix",
-		"watch-tests": "tsc -p . -w --outDir out"
+	"capabilities": {
+		"virtualWorkspaces": {
+			"description": "Virtual Workspaces are not supported with pylint.",
+			"supported": false
+		}
 	},
+	"l10n": "./l10n",
 	"serverInfo": {
 		"module": "pylint",
 		"name": "Pylint"
