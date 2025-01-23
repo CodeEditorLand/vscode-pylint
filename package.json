@@ -175,7 +175,7 @@
 		"@types/chai": "5.0.1",
 		"@types/fs-extra": "11.0.4",
 		"@types/glob": "8.1.0",
-		"@types/node": "22.10.9",
+		"@types/node": "22.10.10",
 		"@types/sinon": "17.0.3",
 		"chai": "5.1.2",
 		"glob": "11.0.1",
